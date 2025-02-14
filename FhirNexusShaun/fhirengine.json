@@ -35,7 +35,9 @@
           "EnableRetryOnFailure": true,
           "ReferencedTypes": [
             "Patient",
-            "Practitioner"
+            "Practitioner",
+            "Person",
+            "OperationOutcome"
           ]
         },
         "IncludeStandardSearchParams": true,
@@ -44,7 +46,9 @@
           "Education",
           "Inventory",
           "Appointment",
-          "Course"
+          "Course",
+          "Person",
+          "OperationOutcome"
         ]
       }
     }
