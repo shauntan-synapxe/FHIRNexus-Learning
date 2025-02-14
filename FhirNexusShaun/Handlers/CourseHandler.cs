@@ -14,14 +14,16 @@ namespace FhirNexusShaun.Handlers
     [FhirHandlerClass(AcceptedType = nameof(Course))]
     public class CourseHandler(ISearchService<Course> searchService, IDataService<Course> dataService, IHttpClientFactory httpClientFactory)
     {
-        [FhirHandler("PreEnroll", HandlerCategory.PreCRUD, FhirInteractionType.OperationInstance, 
-            CustomOperation = "enroll")]
+        [FhirHandler("PreEnroll", HandlerCategory.PreCRUD, FhirInteractionType.OperationInstance, CustomOperation = "enroll")]
         public async Task PreEnroll(ResourceKey resourceKey, ResourceReference trainee, FhirContext context, CancellationToken cancellationToken)
         {
             Console.WriteLine();
             Console.WriteLine("---------------------------------------------");
             Console.WriteLine("Pre Enroll Start");
             Console.WriteLine("---------------------------------------------");
+
+            Course course = await dataService.GetAsync<Course>(resourceKey, cancellationToken)
+                ?? throw new ResourceNotFoundException(resourceKey);
 
             // Check if the trainee is already enrolled.
             // Check if the trainee enrolled in another overlapping course.
@@ -37,8 +39,7 @@ namespace FhirNexusShaun.Handlers
             Console.WriteLine();
         }
 
-        [FhirHandler("Enroll", HandlerCategory.CRUD, FhirInteractionType.OperationInstance, 
-            CustomOperation = "enroll")]
+        [FhirHandler("Enroll", HandlerCategory.CRUD, FhirInteractionType.OperationInstance, CustomOperation = "enroll")]
         public async Task Enroll(ResourceKey resourceKey, ResourceReference trainee, FhirContext context, CancellationToken cancellationToken)
         {
             Console.WriteLine();
@@ -49,31 +50,16 @@ namespace FhirNexusShaun.Handlers
             // debug, write the course into log.
             string json = Newtonsoft.Json.JsonConvert.SerializeObject(trainee);
             Console.WriteLine(json);
-
             Console.WriteLine(resourceKey);
 
+            Course course = await dataService.GetAsync<Course>(resourceKey, cancellationToken)
+                ?? throw new ResourceNotFoundException(resourceKey);
 
-            Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("Enroll End");
-            Console.WriteLine("---------------------------------------------");
-            Console.WriteLine();
-        }
+            course.Trainees ??= [];
+            course.Trainees.Add(trainee);
 
-        // The PostCRUD handler sends the created patient to an external endpoint.
-        [FhirHandler("PostEnroll", HandlerCategory.PostCRUD, FhirInteractionType.OperationInstance, 
-            CustomOperation = "enroll")]
-        public async Task PostEnroll(ResourceKey resourceKey, ResourceReference trainee, IFhirContext context, CancellationToken cancellationToken)
-        {
-            Console.WriteLine();
-            Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("Post Enroll Start");
-            Console.WriteLine("---------------------------------------------");
+            await dataService.UpsertAsync(course, WeakETag.FromVersionId(course.VersionId), false, true, false, cancellationToken);
 
-            using HttpClient client = httpClientFactory.CreateClient();
-            // var response = await client.PostAsJsonAsync("https://httpbin.org/anything", patient);
-            // response.EnsureSuccessStatusCode();
-
-            // context.Response.AddResource();
             context.Response.StatusCode = HttpStatusCode.OK;
 
             OperationOutcome outcome = new OperationOutcome
@@ -91,11 +77,8 @@ namespace FhirNexusShaun.Handlers
 
             context.Response.AddResource(outcome);
 
-            Console.WriteLine(resourceKey);
-
-
             Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("Post Enroll End");
+            Console.WriteLine("Enroll End");
             Console.WriteLine("---------------------------------------------");
             Console.WriteLine();
         }

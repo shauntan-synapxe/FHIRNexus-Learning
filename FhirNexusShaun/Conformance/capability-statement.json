@@ -32,13 +32,31 @@
               "code": "search-type"
             }
           ],
+          "versioning": "versioned",
+          "searchParam": [
+            {
+              "name": "title",
+              "type": "string"
+            },
+            {
+              "name": "startDate",
+              "type": "date"
+            },
+            {
+              "name": "endDate",
+              "type": "date"
+            },
+            {
+              "name": "trainee",
+              "type": "reference"
+            }
+          ],
           "operation": [
             {
               "name": "enroll",
               "definition": "OperationDefinition/Course-Enroll"
             }
-          ],
-          "versioning": "versioned"
+          ]
         },
         {
           "type": "CapabilityStatement",
