@@ -1,0 +1,24 @@
+       
+        {
+          "type": "Inventory",
+          //"profile": "StructureDefinition/Inventory",
+          "interaction": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "search-type"
+            }
+          ],
+          "versioning": "versioned",
+        }
+

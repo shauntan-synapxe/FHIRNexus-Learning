@@ -1,0 +1,17 @@
+@baseUrl=https://localhost:7008
+@applicationId=test-app
+
+### Create Course Request:
+# @name createCourseRequest
+
+POST {{baseUrl}}/Course
+X-Ihis-SourceApplication: {{applicationId}}
+Content-Type: application/fhir+json
+
+{
+  "resourceType": "Course",
+  "title": "Learn HL7 FHIR Data Profiling",
+  "duration": 5,
+  "startDate": "2025-03-09",
+  "category": "intermediate"
+}

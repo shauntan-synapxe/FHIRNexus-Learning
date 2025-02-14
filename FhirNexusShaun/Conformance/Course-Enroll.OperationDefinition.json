@@ -1,0 +1,29 @@
+{
+  "resourceType": "OperationDefinition",
+  "id": "Course-Enroll",
+  "name": "Course-Enroll",
+  "status": "active",
+  "kind": "operation",
+  "affectsState": false,
+  "system": false,
+  "type": true,
+  "instance": false,
+  "resource": [ "Course" ],
+  "code": "enroll",
+  "parameter": [
+    {
+      "name": "resource",
+      "use": "in",
+      "min": 1,
+      "max": "1",
+      "type": "Parameters"
+    },
+    {
+      "name": "return",
+      "use": "out",
+      "min": 1,
+      "max": "1",
+      "type": "Course"
+    }
+  ]
+}

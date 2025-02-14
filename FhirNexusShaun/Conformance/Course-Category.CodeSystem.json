@@ -1,0 +1,37 @@
+{
+  "resourceType": "CodeSystem",
+  "title": "Course-Category",
+  "url": "https://fhir.synapxe.sg/CodeSystem/course-category",
+  "status": "active",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email"
+        }
+      ]
+    }
+  ],
+  "compositional": false,
+  "content": "complete",
+  "concept": [
+    {
+      "code": "basic",
+      "display": "Basic"
+    },
+    {
+      "code": "intermediate",
+      "display": "Intermediate"
+    },
+    {
+      "code": "advanced",
+      "display": "Advanced"
+    }
+  ],
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>Course-Category</h2><tt>https://fhir.synapxe.sg/CodeSystem/education-study</tt><p></p></div>"
+  },
+  "count": 3,
+  "name": "Course_Category"
+}

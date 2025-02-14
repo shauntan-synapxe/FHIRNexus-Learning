@@ -1,0 +1,41 @@
+{
+  "resourceType": "ValueSet",
+  "url": "https://fhir.synapxe.sg/ValueSet/course-category",
+  "title": "Course-Category",
+  "status": "active",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "email"
+        }
+      ]
+    }
+  ],
+  "compose": {
+    "include": [
+      {
+        "system": "http://snomed.info/sct",
+        "concept": [
+          {
+            "code": "basic",
+            "display": "Basic"
+          },
+          {
+            "code": "intermediate",
+            "display": "Intermediate"
+          },
+          {
+            "code": "advanced",
+            "display": "Advanced"
+          }
+        ]
+      }
+    ]
+  },
+  "text": {
+    "status": "generated",
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>Course-Category</h2><tt>https://fhir.synapxe.sg/ValueSet/course-category</tt></div>"
+  },
+  "name": "Course_Category"
+}

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Synapxe.Fhir.CodeGeneration" Version="1.0.0-*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ihis.FhirEngine.R5" Version="4.2.1" />
+  </ItemGroup>
+
+</Project>
