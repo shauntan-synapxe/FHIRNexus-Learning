@@ -34,4 +34,8 @@
     <ItemGroup>
       <AdditionalFiles Remove="Conformance\Course.StructureDefinition.json" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Conformance\ValueSets\" />
+    </ItemGroup>
 </Project>

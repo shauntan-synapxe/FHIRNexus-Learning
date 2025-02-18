@@ -164,12 +164,15 @@
           "max": "1"
         },
         "type": [
-
           {
             "code": "string"
           }
         ],
-        "isModifier": false
+        "isModifier": false,
+        "binding": {
+          "strength": "required",
+          "valueSet": "https://fhir.synapxe.sg/ValueSet/course-category"
+        }
       },
       {
         "id": "Course.trainees",

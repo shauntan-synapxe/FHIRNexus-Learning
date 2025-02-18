@@ -36,19 +36,18 @@
           "searchParam": [
             {
               "name": "title",
-              "type": "string"
+              "type": "string",
+              "definition": "http://sypnapxe.sg/fhir/SearchParameter/Course-title"
             },
             {
               "name": "startDate",
-              "type": "date"
-            },
-            {
-              "name": "endDate",
-              "type": "date"
+              "type": "date",
+              "definition": "http://sypnapxe.sg/fhir/SearchParameter/Course-startDate"
             },
             {
               "name": "trainee",
-              "type": "reference"
+              "type": "string",
+              "definition": "http://sypnapxe.sg/fhir/SearchParameter/Course-trainee"
             }
           ],
           "operation": [

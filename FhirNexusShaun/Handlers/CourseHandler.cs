@@ -14,12 +14,54 @@ namespace FhirNexusShaun.Handlers
     [FhirHandlerClass(AcceptedType = nameof(Course))]
     public class CourseHandler(ISearchService<Course> searchService, IDataService<Course> dataService, IHttpClientFactory httpClientFactory)
     {
+        //* -------------------------------------------------------------------
+        //* Course CRUD
+        //* -------------------------------------------------------------------
+        [FhirHandler("PreCreate", HandlerCategory.PreCRUD, FhirInteractionType.Create)]
+        public async Task PreCreate(Course input, FhirContext context, CancellationToken cancellationToken)
+        {
+            Console.WriteLine();
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("PreCreate Start");
+            Console.WriteLine("---------------------------------------------");
+
+            // debug, write the input into log.
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(input);
+            Console.WriteLine(json);
+
+            //* Check that duplicate course (same title and start date) exists.
+            SearchResult dupCourseResults = await searchService.SearchAsync(nameof(Course), [
+                ("title", input.Title),
+                ("startDate", input.StartDate)
+            ], false, cancellationToken);
+
+            if (dupCourseResults.Results.Any())
+            {
+                throw new PreconditionFailedException("Course with the same title and start date already exists.");
+            }
+
+            //* Course must be at least 1 month later than the created date.
+            DateTime startDate = DateTime.Parse(input.StartDate);
+            if (startDate < DateTime.Now.AddMonths(1))
+            {
+                throw new PreconditionFailedException("Course must be at least 1 month later than the created date.");
+            }
+
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("PreCreate End");
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine();
+        }
+
+        //* -------------------------------------------------------------------
+        //* Enroll CRUD
+        //* -------------------------------------------------------------------
         [FhirHandler("PreEnroll", HandlerCategory.PreCRUD, FhirInteractionType.OperationInstance, CustomOperation = "enroll")]
         public async Task PreEnroll(ResourceKey resourceKey, ResourceReference trainee, FhirContext context, CancellationToken cancellationToken)
         {
             Console.WriteLine();
             Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("Pre Enroll Start");
+            Console.WriteLine("PreEnroll Start");
             Console.WriteLine("---------------------------------------------");
 
             Course course = await dataService.GetAsync<Course>(resourceKey, cancellationToken)
@@ -34,7 +76,7 @@ namespace FhirNexusShaun.Handlers
             Console.WriteLine(resourceKey);
 
             Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("Pre Enroll End");
+            Console.WriteLine("PreEnroll End");
             Console.WriteLine("---------------------------------------------");
             Console.WriteLine();
         }

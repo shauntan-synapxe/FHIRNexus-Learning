@@ -77,6 +77,61 @@
           "Location"
         ]
       }
+    },
+    {
+      "fullUrl": "http://sypnapxe.sg/fhir/SearchParameter/Course-title",
+      "resource": {
+        "resourceType": "SearchParameter",
+        "id": "Course-title",
+        "url": "http://sypnapxe.sg/fhir/SearchParameter/Course-title",
+        "version": "5.0.0",
+        "name": "title",
+        "status": "draft",
+        "experimental": false,
+        "date": "2024-05-08T09:00:00+08:00",
+        "publisher": "Synapxe Pte. Ltd.",
+        "code": "title",
+        "base": [ "Course" ],
+        "type": "string",
+        "expression": "Course.title"
+      }
+    },
+    {
+      "fullUrl": "http://sypnapxe.sg/fhir/SearchParameter/Course-startDate",
+      "resource": {
+        "resourceType": "SearchParameter",
+        "id": "Course-startDate",
+        "url": "http://sypnapxe.sg/fhir/SearchParameter/Course-startDate",
+        "version": "5.0.0",
+        "name": "startDate",
+        "status": "draft",
+        "experimental": false,
+        "date": "2024-05-08T09:00:00+08:00",
+        "publisher": "Synapxe Pte. Ltd.",
+        "code": "startDate",
+        "base": [ "Course" ],
+        "type": "date",
+        "expression": "Course.startDate"
+      }
+    },
+    {
+      "fullUrl": "http://sypnapxe.sg/fhir/SearchParameter/Course-trainee",
+      "resource": {
+        "resourceType": "SearchParameter",
+        "id": "Course-trainee",
+        "url": "http://sypnapxe.sg/fhir/SearchParameter/Course-trainee",
+        "version": "5.0.0",
+        "name": "trainee",
+        "status": "draft",
+        "experimental": false,
+        "date": "2024-05-08T09:00:00+08:00",
+        "publisher": "Synapxe Pte. Ltd.",
+        "code": "trainee",
+        "base": [ "Course" ],
+        "type": "string",
+        "expression": "Course.trainees.identifier.value"
+      }
     }
+
   ]
 }

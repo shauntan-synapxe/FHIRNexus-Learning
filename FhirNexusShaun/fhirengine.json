@@ -23,10 +23,10 @@
       "OtlpExporter": true
     },
     "Authentication": "FhirNexusShaun.Security.HeadersAuthenticationHandler",
-    "ResourceRepositoryCache": {
-      "GlobalExpiration": "01:00:00",
-      "AllowCacheDisable": true
-    }
+//    "ResourceRepositoryCache": {
+//      "GlobalExpiration": "01:00:00",
+//      "AllowCacheDisable": true
+//    }
   },
   "Handlers": {
     "Repository": {
