@@ -115,6 +115,24 @@
       }
     },
     {
+      "fullUrl": "http://sypnapxe.sg/fhir/SearchParameter/Course-endDate",
+      "resource": {
+        "resourceType": "SearchParameter",
+        "id": "Course-endDate",
+        "url": "http://sypnapxe.sg/fhir/SearchParameter/Course-endDate",
+        "version": "5.0.0",
+        "name": "endDate",
+        "status": "draft",
+        "experimental": false,
+        "date": "2024-05-08T09:00:00+08:00",
+        "publisher": "Synapxe Pte. Ltd.",
+        "code": "endDate",
+        "base": [ "Course" ],
+        "type": "date",
+        "expression": "Course.endDate"
+      }
+    },
+    {
       "fullUrl": "http://sypnapxe.sg/fhir/SearchParameter/Course-trainee",
       "resource": {
         "resourceType": "SearchParameter",

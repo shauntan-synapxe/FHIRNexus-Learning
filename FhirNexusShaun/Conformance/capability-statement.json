@@ -45,6 +45,11 @@
               "definition": "http://sypnapxe.sg/fhir/SearchParameter/Course-startDate"
             },
             {
+              "name": "endDate",
+              "type": "date",
+              "definition": "http://sypnapxe.sg/fhir/SearchParameter/Course-endDate"
+            },
+            {
               "name": "trainee",
               "type": "string",
               "definition": "http://sypnapxe.sg/fhir/SearchParameter/Course-trainee"
